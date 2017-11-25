@@ -2,12 +2,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom'
-import { Row, Col, Container, CardPanel } from 'react-materialize';
+import { Row, Col, Container, CardPanel, Card } from 'react-materialize';
 import Navbar from './components/navbar.jsx'
 import ProjectList from './components/project-list.jsx'
 import ProjectDetails from './components/project-details.jsx'
-
 import { PieChart, Pie, Cell } from 'recharts';
+
 const COLORS = ['#F44336', '#FFC107', '#4CAF50']
 class Home extends Component {
   constructor(props) {
@@ -20,24 +20,55 @@ class Home extends Component {
         {name: 'p4'}
       ],
       "pie_chart_data": [
-        {name:"Red", uv:5 },
+        {name:"Red", uv:20 },
         {name:"Amber", uv:5},
         {name:"Green", uv:90}
         ],
-      "spend":-100
+      "spend":15000
     };
   }
 
-  pieClick(info) {
-    console.log("CLICK THAT PIE" + JSON.stringify(info.activePayload[0].payload.name));
+  pieClick(info){
+    console.log("CLICK THAT PIE" + JSON.stringify(info.tooltipPayload[0].name));
   }
 
-  formatMoney(val) {
-    return "£"+Math.abs(val);
-  }
+  formatMoney(val){
+    var number = Math.abs(val)
+    var digits = Math.log(number) * Math.LOG10E + 1 | 0;
+    var formattedNumber = number;
+    switch (digits) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+        console.log(digits + " is either 0,1,2,3");
+        formattedNumber = number;
+        break;
+      case 4:
+      case 5:
+      case 6:
+        console.log(digits + " is either 4,5,6");
+        formattedNumber = Math.round(number/1000)
+        formattedNumber += "k"
+        break;
+      case 7:
+      case 8:
+      case 9:
+        console.log(digits + " is either 7,8,9,10,11,12");
+        formattedNumber = Math.round(number/100000)/10
+        formattedNumber += "m"
+        break;
 
-  get_overspend() {
-    return this.state.spend > 0 ? <div className="overspend">{this.formatMoney(this.state.spend)}</div> : <div className="underspend">{"-" + this.formatMoney(this.state.spend)}</div>;
+      default:
+        console.log(digits + " is bigger than 12");
+        formattedNumber = Math.round(number/100000000)/10
+        formattedNumber += "bn"
+        break;
+    }
+    return "£"+ formattedNumber;
+  }
+  get_overspend(){
+    return this.state.spend > 0 ? <div className="overspend"><h2>{this.formatMoney(this.state.spend)}</h2></div> : <div className="underspend"><h2>{"-" + this.formatMoney(this.state.spend)}</h2></div>;
   }
 
   render() {
