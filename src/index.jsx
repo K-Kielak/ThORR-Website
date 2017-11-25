@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Navbar, NavItem } from 'react-materialize';
+import Navbar from './components/navbar.jsx'
 
 class Home extends Component {
     render(){
         return (
           <div>
-            <Navbar className="bg-blue">ThORR - Overview</Navbar>
+            <Navbar title='Overview'/>
             <div>
               <p>Test Paragraph</p>
             </div>

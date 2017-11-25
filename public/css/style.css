@@ -1,4 +1,23 @@
+.navbar-default {
+  margin-top: 20px;
+  background-color: #e9edee;
+  border: 0;
+}
 
+.navbar-header {
+  font-size: 25px;
+  line-height: 52px;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+
+.navbar-brand > img {
+  height: 100%;
+  padding: 3px;
+  width: auto;
+}
 
 .bg-white {
   color: #ffffff;
