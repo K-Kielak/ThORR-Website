@@ -2,13 +2,13 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom'
-import { Row, Col, Container, Card } from 'react-materialize';
 import Navbar from './components/navbar.jsx'
 import ProjectList from './components/project-list.jsx'
 import ProjectDetails from './components/project-details.jsx'
-import { PieChart, Pie, Cell } from 'recharts';
+import ChartsDashboard from './components/charts-dashboard.jsx'
 
 const COLORS = ['#F44336', '#FFC107', '#4CAF50']
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -19,16 +19,17 @@ class Home extends Component {
         {name: 'p3'},
         {name: 'p4'}
       ],
-      "visit_chart_data":[
+      visitData:[
         {name:"Visit", uv:10},
         {name:"Don't visit", uv:90},
       ],
-      "rag_chart_data": [
+      ragData: [
         {name:"Red", uv:20 },
         {name:"Amber", uv:5},
         {name:"Green", uv:90}
         ],
-      "spend":15000
+      spend: this.getOverspend(15000),
+      pieClick: this.pieClick.bind(this)
     };
   }
 
@@ -71,48 +72,29 @@ class Home extends Component {
     }
     return "£"+ formattedNumber;
   }
-  get_overspend(){
-    return this.state.spend > 0 ? <div className="overspend"><h2>{this.formatMoney(this.state.spend)}</h2></div> : <div className="underspend"><h2>{"-" + this.formatMoney(this.state.spend)}</h2></div>;
+
+  getOverspend(spend){
+    return spend > 0 ? <div className="overspend"><h2>{this.formatMoney(spend)}</h2></div> : <div className="underspend"><h2>{"-" + this.formatMoney(spend)}</h2></div>;
   }
 
   render() {
-        return (
-          <div>
-            <Navbar title="Overview" />
-            <Row>
-              <Col s={12} m={4}>
-                <Card title="Projected RAG" className="lighten-4 black-text">
-                  <PieChart width={400} height={400} onClick={this.pieClick}>
-                    <Pie type="monotone" data={this.state.rag_chart_data} dataKey="uv">
-                      {
-                      	this.state.rag_chart_data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index}/>)
-                      }
-                    </Pie>
-                  </PieChart>
-                </Card>
-              </Col>
-              <Col s={12} m={4}>
-                <Card title="Underspend/Overspend">
-                  {this.get_overspend()}
-                </Card>
-              </Col>
-              <Col s={12} m={4}>
-                <Card title="Recommended Site Visits" className="lighten-4 black-text">
-                  <PieChart width={400} height={400} onClick={this.pieClick}>
-                    <Pie type="monotone" data={this.state.visit_chart_data} dataKey="uv">
-                      {
-                      	this.state.visit_chart_data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index}/>)
-                      }
-                    </Pie>
-                  </PieChart>
-                </Card>
-              </Col>
-            </Row>
-            <ProjectList projects={this.state.projects} />
-          </div>
-        );
-    }
+    return (
+      <div>
+        <Navbar title="Overview" />
+        <ChartsDashboard
+          pieClick={this.state.pieClick}
+          pieColors={COLORS}
+          ragTitle="Projected RAG"
+          ragData={this.state.ragData}
+          spendingBudgetTitle="Underspend/Overspend"
+          spendingBudgetValue={this.state.spend}
+          visitsPredictionTitle="Sites to visit"
+          visitsPredictionData={this.state.visitData} />
+        <ProjectList projects={this.state.projects} />
+      </div>
+    );
   }
+}
 
 render(
   <BrowserRouter>
