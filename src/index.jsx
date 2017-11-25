@@ -58,9 +58,6 @@ class Home extends Component {
               </Col>
               <Col s={12} m={4}>
                 <CardPanel>
-                  <h1>Budget</h1>
-                </CardPanel>
-                <CardPanel>
                   {this.get_overspend()}
                 </CardPanel>
               </Col>
