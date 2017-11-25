@@ -5,12 +5,12 @@ import { Navbar, NavItem } from 'react-materialize';
 class Home extends Component {
     render(){
         return (
-          <body>
+          <div>
             <Navbar>Test</Navbar>
-            <container>
+            <div>
               <p>Test Paragraph</p>
-            </container>
-          </body>
+            </div>
+          </div>
         );
     }
 }
