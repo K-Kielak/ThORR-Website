@@ -1,0 +1,32 @@
+{
+  "name": "thorr-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack -d --watch",
+    "build": "webpack",
+    "serve": "serve ./public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/K-Kielak/ThORR-Website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/K-Kielak/ThORR-Website/issues"
+  },
+  "homepage": "https://github.com/K-Kielak/ThORR-Website#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "serve": "^6.4.1",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "react-materialize": "^1.1.0"
+  }
+}
