@@ -1,5 +1,19 @@
-.overspend {
-color: red;
+
+
+.bg-white {
+  color: #ffffff;
+}
+
+.bg-blue {
+  background-color: #00476B;
+}
+
+.text-blue {
+  color: #00476B;
+}
+
+.overspend{
+  color: red;
 }
 
 .underspend{
