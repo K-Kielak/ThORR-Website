@@ -6,7 +6,7 @@ class Home extends Component {
     render(){
         return (
           <div>
-            <Navbar>Test</Navbar>
+            <Navbar className="bg-blue">ThORR - Overview</Navbar>
             <div>
               <p>Test Paragraph</p>
             </div>
