@@ -9,7 +9,7 @@ class Home extends Component {
     super(props);
     this.state = {
       "pie_chart_data": [
-        {name:"Red", uv:5 },
+        {name:"Red", uv:20 },
         {name:"Amber", uv:5},
         {name:"Green", uv:90}
         ],
@@ -18,7 +18,7 @@ class Home extends Component {
   }
 
   pieClick(info){
-    console.log("CLICK THAT PIE" + JSON.stringify(info.activePayload[0].payload.name));
+    console.log("CLICK THAT PIE" + JSON.stringify(info.tooltipPayload[0].name));
   }
 
   formatMoney(val){
@@ -65,9 +65,9 @@ class Home extends Component {
             <Navbar className="bg-blue">ThORR - Overview</Navbar>
               <Row>
                 <Col s={12} m={4}>
-                  <CardPanel className="teal lighten-4 black-text">
-                    <PieChart width={400} height={400} onClick={this.pieClick}>
-                      <Pie type="monotone" data={this.state.pie_chart_data} dataKey="uv">
+                  <CardPanel className="black-text">
+                    <PieChart width={400} height={400}>
+                      <Pie type="monotone" data={this.state.pie_chart_data} dataKey="uv" onClick={this.pieClick}>
                         {
                         	this.state.pie_chart_data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
                         }
