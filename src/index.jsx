@@ -30,7 +30,7 @@ class Home extends Component {
   render(){
         return (
           <div>
-            <Navbar className="bg-blue">Test</Navbar>
+            <Navbar className="bg-blue">ThORR - Overview</Navbar>
               <Row>
                 <Col s={12} m={4}>
                   <CardPanel className="teal lighten-4 black-text">
