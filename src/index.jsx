@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom'
-import { Row, Col, Container, CardPanel, Card } from 'react-materialize';
+import { Row, Col, Container, Card } from 'react-materialize';
 import Navbar from './components/navbar.jsx'
 import ProjectList from './components/project-list.jsx'
 import ProjectDetails from './components/project-details.jsx'
@@ -19,7 +19,11 @@ class Home extends Component {
         {name: 'p3'},
         {name: 'p4'}
       ],
-      "pie_chart_data": [
+      "visit_chart_data":[
+        {name:"Visit", uv:10},
+        {name:"Don't visit", uv:90},
+      ],
+      "rag_chart_data": [
         {name:"Red", uv:20 },
         {name:"Amber", uv:5},
         {name:"Green", uv:90}
@@ -77,20 +81,31 @@ class Home extends Component {
             <Navbar title="Overview" />
             <Row>
               <Col s={12} m={4}>
-                <CardPanel className="teal lighten-4 black-text">
+                <Card title="Projected RAG" className="lighten-4 black-text">
                   <PieChart width={400} height={400} onClick={this.pieClick}>
-                    <Pie type="monotone" data={this.state.pie_chart_data} dataKey="uv">
+                    <Pie type="monotone" data={this.state.rag_chart_data} dataKey="uv">
                       {
-                      	this.state.pie_chart_data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index}/>)
+                      	this.state.rag_chart_data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index}/>)
                       }
                     </Pie>
                   </PieChart>
-                </CardPanel>
+                </Card>
               </Col>
               <Col s={12} m={4}>
-                <CardPanel>
+                <Card title="Underspend/Overspend">
                   {this.get_overspend()}
-                </CardPanel>
+                </Card>
+              </Col>
+              <Col s={12} m={4}>
+                <Card title="Recommended Site Visits" className="lighten-4 black-text">
+                  <PieChart width={400} height={400} onClick={this.pieClick}>
+                    <Pie type="monotone" data={this.state.visit_chart_data} dataKey="uv">
+                      {
+                      	this.state.visit_chart_data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} key={index}/>)
+                      }
+                    </Pie>
+                  </PieChart>
+                </Card>
               </Col>
             </Row>
             <ProjectList projects={this.state.projects} />
