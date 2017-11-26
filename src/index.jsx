@@ -50,8 +50,8 @@ class Home extends Component {
         {name:"Green", uv:90},
         {name:"Amber", uv:5}
       ],
-      spend: PROJECTS.reduce((a, b) => a.spendings + b.spendings, 0),
-      budget: PROJECTS.reduce((a, b) => a.budget + b.budget, 0),
+      spend: PROJECTS.reduce((sum, project) => sum + project.spendings, 0),
+      budget: PROJECTS.reduce((sum, project) => sum + project.budget, 0),
       pieClick: this.pieClick.bind(this)
     };
 
@@ -106,24 +106,26 @@ class Home extends Component {
     return (
       <div>
         <Navbar title="Overview" />
-        <Row>
-          <Col s={12} m={4}>
-            <ProjectList
-              projects={this.state.projects} />
-          </Col>
-          <Col s={12} m={8} >
-            <ChartsDashboard
-              pieClick={this.state.pieClick}
-              colors={COLORS}
-              spendingBudgetTitle='Budget vs Expenses'
-              spendingBudgetData={[{'name': 'Budget vs Expenses', 'spend': this.state.spend, 'budget': this.state.budget}]}
-              spendingBudgetXAxis='Budget vs Expenses'
-              spendingDataKey1="spend"
-              spendingDataKey2="budget"
-              visitsPredictionTitle="Classification"
-              visitsPredictionData={this.state.visitData} />
-          </Col>
-        </Row>
+        <div className="content">
+          <Row>
+            <Col s={12} m={4}>
+              <ProjectList
+                projects={this.state.projects} />
+            </Col>
+            <Col s={12} m={8} >
+              <ChartsDashboard
+                pieClick={this.state.pieClick}
+                colors={COLORS}
+                spendingBudgetTitle='Expenses vs Budget'
+                spendingBudgetData={[{'name': 'expenses vs budget', 'expenses': this.state.spend, 'budget': this.state.budget}]}
+                spendingBudgetXAxis='expenses vs budget'
+                spendingBudgetKey1="expenses"
+                spendingBudgetKey2="budget"
+                visitsPredictionTitle="Classification"
+                visitsPredictionData={this.state.visitData} />
+            </Col>
+          </Row>
+        </div>
       </div>
     );
   }

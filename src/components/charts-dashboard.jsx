@@ -9,10 +9,11 @@ const ChartsDashboard = (props) => {
       <Col s={12} m={6}>
         <BarChartCard
           title={props.spendingBudgedTitle}
+          colors={props.colors}
           data={props.spendingBudgetData}
           axisKey={props.spendingBudetXAxis}
-          dataKey1='spend'
-          dataKey2='budget' />
+          dataKey1={props.spendingBudgetKey1}
+          dataKey2={props.spendingBudgetKey2} />
       </Col>
       <Col s={12} m={6}>
         <PieChartCard
