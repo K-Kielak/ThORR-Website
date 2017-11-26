@@ -27,6 +27,7 @@ class ProjectDetails extends Component {
         name: props.match.params.name // TODO replace with API call
       },
       "line_1": [],
+      "line_1_error": [],
       "bar_data": [  //TODO Replace with API call
         { name:"Mar", uv:10, pv:21, errorY:[2,7]},
         { name:"Apr", uv:12, pv:19, errorY:6 },
@@ -48,6 +49,12 @@ class ProjectDetails extends Component {
       return response.json()
     }).then( (data) => {
       oldState.line_1 = data.data
+      this.setState(oldState);
+    }));
+    (fetch('http://localhost:8080/project/line-error/Project%201').then((response) => {
+      return response.json()
+    }).then( (data) => {
+      oldState.line_1_error = data.data
       this.setState(oldState);
     }));
     console.log(this.state);
@@ -72,6 +79,24 @@ class ProjectDetails extends Component {
                 <Line type="monotone" dataKey="CP5 Y3" />
                 <Line type="monotone" dataKey="CP5 Y4" />
                 <Line type="monotone" dataKey="CP5 Y5" />
+              </LineChart>
+            </ResponsiveContainer>
+          </Card>
+        </Col>
+        <Col s={12} m={4}>
+          <Card title="Line Graph">
+            <ResponsiveContainer maxHeight={200} maxWidth={200}>
+              <LineChart  data={this.state.line_1_error}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="x" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="Y1" />
+                <Line type="monotone" dataKey="Y2" />
+                <Line type="monotone" dataKey="Y3" />
+                <Line type="monotone" dataKey="Y4" />
+                <Line type="monotone" dataKey="Y5" />
               </LineChart>
             </ResponsiveContainer>
           </Card>
