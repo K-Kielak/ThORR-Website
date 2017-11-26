@@ -12,21 +12,21 @@ import {
 import Navbar from './navbar.jsx'
 
 class ProjectDetails extends Component {
+  load_data(){
+    fetch('http://localhost:8080/project/line/Project%201').then(function(response){
+      return response.json();
+    }).then(function(data){
+      console.log(data.data)
+      return data.data
+    });
+  }
   constructor(props) {
     super(props)
     this.state = {
       project: {
         name: props.match.params.name // TODO replace with API call
       },
-      "line_1": [  //TODO Replace with API call
-        { name:"Mar", uv:10, pv:21},
-        { name:"Apr", uv:12, pv:19 },
-        { name:"May", uv:16, pv:26 },
-        { name:"Jun", uv:30, pv:45 },
-        { name:"Jul", uv:90, pv:30 },
-        { name:"Aug", uv:60, pv:23 },
-        { name:"Sep", uv:10, pv:17 }
-      ],
+      "line_1": [],
       "bar_data": [  //TODO Replace with API call
         { name:"Mar", uv:10, pv:21, errorY:[2,7]},
         { name:"Apr", uv:12, pv:19, errorY:6 },
@@ -37,24 +37,41 @@ class ProjectDetails extends Component {
         { name:"Sep", uv:10, pv:17, errorY:3 }
         ]
     }
+    console.log("Loaded")
+    console.log(this.state)
+  }
+
+  componentDidMount()
+  {
+    var oldState = this.state;
+    (fetch('http://localhost:8080/project/line/Project%201').then((response) => {
+      return response.json()
+    }).then( (data) => {
+      oldState.line_1 = data.data
+      this.setState(oldState);
+    }));
+    console.log(this.state);
   }
 
   render() {
     return (
       <div>
-      <Navbar title={`Project ${this.state.project.name} details`} />
+      <Navbar title={this.state.project.name} />
       <Row>
         <Col s={12} m={4}>
-          <Card title="Line Graph">
+          <Card title="Line Graph ">
             <ResponsiveContainer width='100%' height='100%'>
               <LineChart  data={this.state.line_1}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="x" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="uv" />
-                <Line type="monotone" dataKey="pv" />
+                <Line type="monotone" dataKey="CP5_Y1" />
+                <Line type="monotone" dataKey="CP5_Y2" />
+                <Line type="monotone" dataKey="CP5_Y3" />
+                <Line type="monotone" dataKey="CP5_Y4" />
+                <Line type="monotone" dataKey="CP5_Y5" />
               </LineChart>
             </ResponsiveContainer>
           </Card>
