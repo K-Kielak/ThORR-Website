@@ -56,11 +56,11 @@ class ProjectDetails extends Component {
   render() {
     return (
       <div>
-      <Navbar title={this.state.project.name} />
+      <Navbar title={`${this.state.project.name} details`} />
       <Row>
         <Col s={12} m={4}>
-          <Card title="Line Graph ">
-            <ResponsiveContainer width='100%' height='100%'>
+          <Card title="Line Graph">
+            <ResponsiveContainer maxHeight={200} maxWidth={200}>
               <LineChart  data={this.state.line_1}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="x" />
@@ -78,7 +78,7 @@ class ProjectDetails extends Component {
         </Col>
         <Col s={12} m={4}>
           <Card title="BarChart">
-            <ResponsiveContainer width='100%' height='100%' max-height='400px'>
+            <ResponsiveContainer maxHeight={200} maxWidth={200}>
               <BarChart data={this.state.bar_data}>
                 <XAxis dataKey="name"/>
                 <YAxis/>

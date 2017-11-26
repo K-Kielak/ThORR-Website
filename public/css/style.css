@@ -3,6 +3,10 @@
   border: 0;
 }
 
+.fix1 {
+  margin-top: 10px;
+}
+
 .navbar-header {
   font-size: 25px;
   line-height: 52px;
@@ -16,6 +20,10 @@
   height: 100%;
   padding: 3px;
   width: auto;
+}
+
+.content {
+  margin-top: 20px;
 }
 
 table, thead {
@@ -37,6 +45,10 @@ td, th {
 
 .bg-blue {
   background-color: #00476B;
+}
+
+.bg-error {
+  background-color: red;
 }
 
 .text-blue {

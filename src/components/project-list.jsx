@@ -14,7 +14,7 @@ const ProjectList = ({ projects }) => {
           <th scope="col">Name</th>
           <th scope="col">Spendings</th>
           <th scope="col">Budget</th>
-          <th scope="col">Rating</th>
+          <th scope="col">Classification</th>
         </tr>
       </thead>
       <tbody>
