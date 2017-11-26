@@ -8,8 +8,8 @@ const ChartsDashboard = (props) => {
     <Row>
       <Col s={12} m={6}>
         <BarChartCard
-          title={props.spendingBudgedTitle}
           colors={props.colors}
+          title={props.spendingBudgetTitle}
           data={props.spendingBudgetData}
           axisKey={props.spendingBudetXAxis}
           dataKey1={props.spendingBudgetKey1}
