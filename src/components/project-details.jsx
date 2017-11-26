@@ -42,7 +42,7 @@ class ProjectDetails extends Component {
   render() {
     return (
       <div>
-      <Navbar title={this.state.project.name} />
+      <Navbar title={`Project ${this.state.project.name} details`} />
       <Row>
         <Col s={12} m={4}>
           <Card title="Line Graph">
