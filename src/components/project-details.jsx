@@ -28,15 +28,7 @@ class ProjectDetails extends Component {
       },
       "line_1": [],
       "line_1_error": [],
-      "bar_data": [  //TODO Replace with API call
-        { name:"Mar", uv:10, pv:21, errorY:[2,7]},
-        { name:"Apr", uv:12, pv:19, errorY:6 },
-        { name:"May", uv:16, pv:26, errorY:3 },
-        { name:"Jun", uv:30, pv:45, errorY:2 },
-        { name:"Jul", uv:90, pv:30, errorY:8 },
-        { name:"Aug", uv:60, pv:23, errorY:[1,7] },
-        { name:"Sep", uv:10, pv:17, errorY:3 }
-        ]
+      "bar_data": []
     }
     console.log("Loaded")
     console.log(this.state)
@@ -55,6 +47,12 @@ class ProjectDetails extends Component {
       return response.json()
     }).then( (data) => {
       oldState.line_1_error = data.data
+      this.setState(oldState);
+    }));
+    (fetch('http://localhost:8080/project/bar/Project%201').then((response) => {
+      return response.json()
+    }).then( (data) => {
+      oldState.bar_data = data.data
       this.setState(oldState);
     }));
     console.log(this.state);
@@ -92,11 +90,11 @@ class ProjectDetails extends Component {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="Y1" />
-                <Line type="monotone" dataKey="Y2" />
-                <Line type="monotone" dataKey="Y3" />
-                <Line type="monotone" dataKey="Y4" />
-                <Line type="monotone" dataKey="Y5" />
+                <Line type="monotone" dataKey="CP5 Y1" />
+                <Line type="monotone" dataKey="CP5 Y2" />
+                <Line type="monotone" dataKey="CP5 Y3" />
+                <Line type="monotone" dataKey="CP5 Y4" />
+                <Line type="monotone" dataKey="CP5 Y5" />
               </LineChart>
             </ResponsiveContainer>
           </Card>
@@ -105,14 +103,13 @@ class ProjectDetails extends Component {
           <Card title="BarChart">
             <ResponsiveContainer maxHeight={200} maxWidth={200}>
               <BarChart data={this.state.bar_data}>
-                <XAxis dataKey="name"/>
+                <XAxis dataKey="x"/>
                 <YAxis/>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <Legend />
-                <Bar dataKey="pv" fill="#8884d8">
-                  <ErrorBar dataKey="errorY" width={3} strokeWidth={1} stroke="black" direction="y" />
+                <Bar dataKey="value" fill="#8884d8">
+                  <ErrorBar dataKey="sd" width={3} strokeWidth={1} stroke="black" direction="y" />
                 </Bar>
-                <Bar dataKey="uv" fill="#82ca9d" />
               </BarChart>
             </ResponsiveContainer>
           </Card>
