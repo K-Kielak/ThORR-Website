@@ -6,10 +6,13 @@ import {
   CartesianGrid, XAxis, YAxis,
   Tooltip, Legend,
   BarChart, Bar, ErrorBar,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Cell
 } from 'recharts';
 
 import Navbar from './navbar.jsx'
+
+const COLORS = ['red', 'green', 'yellow', 'purple'];
 
 class ProjectDetails extends Component {
   load_data(){
@@ -51,7 +54,7 @@ class ProjectDetails extends Component {
       oldState.line_1_error = sortedData
       this.setState(oldState);
     }));
-    (fetch('http://localhost:8080/project/bar/Project%201').then((response) => {
+    (fetch('http://localhost:8080/project/bar/Project%2011').then((response) => {
       return response.json()
     }).then( (data) => {
       oldState.bar_data = data.data
@@ -74,10 +77,10 @@ class ProjectDetails extends Component {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="CP5 Y1" />
-                <Line type="monotone" dataKey="CP5 Y2" />
-                <Line type="monotone" dataKey="CP5 Y3" />
-                <Line type="monotone" dataKey="CP5 Y4" />
+                <Line type="monotone" dataKey="CP5 Y1" stroke="red"/>
+                <Line type="monotone" dataKey="CP5 Y2" stroke="green"/>
+                <Line type="monotone" dataKey="CP5 Y3" stroke="yellow"/>
+                <Line type="monotone" dataKey="CP5 Y4" stroke="purple"/>
                 <Line type="monotone" dataKey="CP5 Y5" />
               </LineChart>
             </ResponsiveContainer>
@@ -92,10 +95,10 @@ class ProjectDetails extends Component {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="CP5 Y1" />
-                <Line type="monotone" dataKey="CP5 Y2" />
-                <Line type="monotone" dataKey="CP5 Y3" />
-                <Line type="monotone" dataKey="CP5 Y4" />
+                <Line type="monotone" dataKey="CP5 Y1" stroke="red"/>
+                <Line type="monotone" dataKey="CP5 Y2" stroke="green"/>
+                <Line type="monotone" dataKey="CP5 Y3" stroke="yellow"/>
+                <Line type="monotone" dataKey="CP5 Y4" stroke="purple"/>
                 <Line type="monotone" dataKey="CP5 Y5" />
               </LineChart>
             </ResponsiveContainer>
@@ -112,6 +115,8 @@ class ProjectDetails extends Component {
                 <Legend />
                 <Bar dataKey="value" fill="#8884d8">
                   <ErrorBar dataKey="sd" width={3} strokeWidth={1} stroke="black" direction="y" />
+                    {
+                      this.state.bar_data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
