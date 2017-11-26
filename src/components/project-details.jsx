@@ -67,11 +67,11 @@ class ProjectDetails extends Component {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="CP5_Y1" />
-                <Line type="monotone" dataKey="CP5_Y2" />
-                <Line type="monotone" dataKey="CP5_Y3" />
-                <Line type="monotone" dataKey="CP5_Y4" />
-                <Line type="monotone" dataKey="CP5_Y5" />
+                <Line type="monotone" dataKey="CP5 Y1" />
+                <Line type="monotone" dataKey="CP5 Y2" />
+                <Line type="monotone" dataKey="CP5 Y3" />
+                <Line type="monotone" dataKey="CP5 Y4" />
+                <Line type="monotone" dataKey="CP5 Y5" />
               </LineChart>
             </ResponsiveContainer>
           </Card>
