@@ -1,6 +1,5 @@
 .navbar-default {
   margin-top: 20px;
-  background-color: #e9edee;
   border: 0;
 }
 
@@ -19,8 +18,21 @@
   width: auto;
 }
 
+table, thead {
+  border: 2px solid #00476B !important;
+}
+
+td, th {
+  border-top: 0.5px solid #00476B !important;
+  border-bottom: 0.5px solid #00476B !important;
+}
+
 .bg-white {
   color: #ffffff;
+}
+
+.bg-lightblue {
+  background-color: #e9edee;
 }
 
 .bg-blue {
@@ -29,6 +41,11 @@
 
 .text-blue {
   color: #00476B;
+}
+
+.clickable:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 .overspend{

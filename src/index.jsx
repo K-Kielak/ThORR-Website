@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom'
+import { Row, Col } from 'react-materialize';
 import Navbar from './components/navbar.jsx'
 import ProjectList from './components/project-list.jsx'
 import ProjectDetails from './components/project-details.jsx'
@@ -14,10 +15,10 @@ class Home extends Component {
     super(props);
     this.state = {
       projects: [
-        {name: 'p1'},
-        {name: 'p2'},
-        {name: 'p3'},
-        {name: 'p4'}
+        {name: 'p1', spendings: 1000, budget: 1000, rating: 1},
+        {name: 'p2', spendings: 1000, budget: 1000, rating: 1},
+        {name: 'p3', spendings: 1000, budget: 1000, rating: 1},
+        {name: 'p4', spendings: 1000, budget: 1000, rating: 1}
       ],
       visitData:[
         {name:"Visit", uv:10},
@@ -81,16 +82,23 @@ class Home extends Component {
     return (
       <div>
         <Navbar title="Overview" />
-        <ChartsDashboard
-          pieClick={this.state.pieClick}
-          pieColors={COLORS}
-          ragTitle="Projected RAG"
-          ragData={this.state.ragData}
-          spendingBudgetTitle="Underspend/Overspend"
-          spendingBudgetValue={this.state.spend}
-          visitsPredictionTitle="Sites to visit"
-          visitsPredictionData={this.state.visitData} />
-        <ProjectList projects={this.state.projects} />
+        <Row>
+          <Col s={12} m={4}>
+            <ProjectList
+              projects={this.state.projects} />
+          </Col>
+          <Col s={12} m={8} >
+            <ChartsDashboard
+              pieClick={this.state.pieClick}
+              pieColors={COLORS}
+              ragTitle="Projected RAG"
+              ragData={this.state.ragData}
+              spendingBudgetTitle="Underspend/Overspend"
+              spendingBudgetValue={this.state.spend}
+              visitsPredictionTitle="Sites to visit"
+              visitsPredictionData={this.state.visitData} />
+          </Col>
+        </Row>
       </div>
     );
   }
