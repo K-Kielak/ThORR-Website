@@ -48,13 +48,15 @@ class ProjectDetails extends Component {
     (fetch('http://localhost:8080/project/line/Project%201').then((response) => {
       return response.json()
     }).then( (data) => {
-      oldState.line_1 = data.data
+      let sortedData = data.data.sort((a, b) => { return a.x > b.x })
+      oldState.line_1 = sortedData
       this.setState(oldState);
     }));
     (fetch('http://localhost:8080/project/line-error/Project%201').then((response) => {
       return response.json()
     }).then( (data) => {
-      oldState.line_1_error = data.data
+      let sortedData = data.data.sort((a, b) => { return a.x > b.x })
+      oldState.line_1_error = sortedData
       this.setState(oldState);
     }));
     console.log(this.state);
@@ -107,6 +109,7 @@ class ProjectDetails extends Component {
               <BarChart data={this.state.bar_data}>
                 <XAxis dataKey="name"/>
                 <YAxis/>
+                <Tooltip />
                 <CartesianGrid strokeDasharray="3 3"/>
                 <Legend />
                 <Bar dataKey="pv" fill="#8884d8">

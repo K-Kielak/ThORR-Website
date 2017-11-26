@@ -26,7 +26,7 @@ class ProjectListItem extends Component {
         <th>{this.state.project.name}</th>
         <td>{this.state.project.spendings}</td>
         <td>{this.state.project.budget}</td>
-        <td>{this.state.project.positive ? 'OK' : 'Requires control'}</td>
+        <td>{this.state.project.positive ? 'OK' : 'Attention Required'}</td>
       </tr>
     )
   }
