@@ -7,6 +7,7 @@ class ProjectListItem extends Component {
     this.state = {
       project: props.project,
       link: `/project/${props.project.name}`,
+      className: `clickable ${props.project.positive ? '' : 'bg-error'}`,
       redirect: false
     }
   }
@@ -21,11 +22,11 @@ class ProjectListItem extends Component {
     }
 
     return (
-      <tr className="clickable" onClick={this.onClick.bind(this)}>
+      <tr className={this.state.className} onClick={this.onClick.bind(this)}>
         <th>{this.state.project.name}</th>
         <td>{this.state.project.spendings}</td>
         <td>{this.state.project.budget}</td>
-        <td>{this.state.project.rating}</td>
+        <td>{this.state.project.positive ? 'OK' : 'Requires control'}</td>
       </tr>
     )
   }

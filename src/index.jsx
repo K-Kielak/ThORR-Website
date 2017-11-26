@@ -8,30 +8,54 @@ import ProjectList from './components/project-list.jsx'
 import ProjectDetails from './components/project-details.jsx'
 import ChartsDashboard from './components/charts-dashboard.jsx'
 
-const COLORS = ['#F44336', '#FFC107', '#4CAF50']
+const COLORS = ['#F44336', '#4CAF50', '#FFC107']
+
+const PROJECTS = [
+  {name: 'Project 1', spendings: 2669, budget: 2758, positive: true},
+  {name: 'Project 2', spendings: 60, budget: 68, positive: true},
+  {name: 'Project 3', spendings: 1324, budget: 691, positive: false},
+  {name: 'Project 4', spendings: 146, budget: 8, positive: false},
+  {name: 'Project 5', spendings: 86, budget: 77, positive: true},
+  {name: 'Project 6', spendings: 63, budget: 1, positive: true},
+  {name: 'Project 7', spendings: 35, budget: 15, positive: true},
+  {name: 'Project 8', spendings: 4, budget: 62, positive: true},
+  {name: 'Project 9', spendings: 35, budget: 15, positive: true},
+  {name: 'Project 10', spendings: 4, budget: 62, positive: true},
+  {name: 'Project 11', spendings: 1, budget: 73, positive: true},
+  {name: 'Project 12', spendings: 93, budget: 73, positive: false},
+  {name: 'Project 13', spendings: 1100, budget: 1186, positive: true},
+  {name: 'Project 14', spendings: 723, budget: 113, positive: true},
+  {name: 'Project 15', spendings: 23, budget: 3, positive: false},
+  {name: 'Project 16', spendings: 13, budget: 16, positive: true},
+  {name: 'Project 17', spendings: 214, budget: 25, positive: true},
+  {name: 'Project 18', spendings: 2718, budget: 577, positive: true},
+  {name: 'Project 19', spendings: 13, budget: 11, positive: true},
+  {name: 'Project 20', spendings: 28, budget: 58, positive: true},
+  {name: 'Project 21', spendings: 167, budget: 146, positive: true},
+  {name: 'Project 22', spendings: 60, budget: 2165, positive: true},
+  {name: 'Project 23', spendings: 136, budget: 220, positive: true}
+]
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: [
-        {name: 'p1', spendings: 1000, budget: 1000, rating: 1},
-        {name: 'p2', spendings: 1000, budget: 1000, rating: 1},
-        {name: 'p3', spendings: 1000, budget: 1000, rating: 1},
-        {name: 'p4', spendings: 1000, budget: 1000, rating: 1}
-      ],
-      visitData:[
-        {name:"Visit", uv:10},
-        {name:"Don't visit", uv:90},
+      projects: PROJECTS,
+      visitData: [
+        {name: "Requires control", uv: PROJECTS.filter(project => {return !project.positive}).length},
+        {name: "OK", uv: PROJECTS.filter(project => {return project.positive}).length},
       ],
       ragData: [
         {name:"Red", uv:20 },
-        {name:"Amber", uv:5},
-        {name:"Green", uv:90}
-        ],
-      spend: this.getOverspend(15000),
+        {name:"Green", uv:90},
+        {name:"Amber", uv:5}
+      ],
+      spend: PROJECTS.reduce((a, b) => a.spendings + b.spendings, 0),
+      budget: PROJECTS.reduce((a, b) => a.budget + b.budget, 0),
       pieClick: this.pieClick.bind(this)
     };
+
+    this.set
   }
 
   pieClick(info){
@@ -90,12 +114,13 @@ class Home extends Component {
           <Col s={12} m={8} >
             <ChartsDashboard
               pieClick={this.state.pieClick}
-              pieColors={COLORS}
-              ragTitle="Projected RAG"
-              ragData={this.state.ragData}
-              spendingBudgetTitle="Underspend/Overspend"
-              spendingBudgetValue={this.state.spend}
-              visitsPredictionTitle="Sites to visit"
+              colors={COLORS}
+              spendingBudgetTitle='Budget vs Expenses'
+              spendingBudgetData={[{'name': 'Budget vs Expenses', 'spend': this.state.spend, 'budget': this.state.budget}]}
+              spendingBudgetXAxis='Budget vs Expenses'
+              spendingDataKey1="spend"
+              spendingDataKey2="budget"
+              visitsPredictionTitle="Classification"
               visitsPredictionData={this.state.visitData} />
           </Col>
         </Row>

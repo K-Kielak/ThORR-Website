@@ -39,6 +39,10 @@ td, th {
   background-color: #00476B;
 }
 
+.bg-error {
+  background-color: red;
+}
+
 .text-blue {
   color: #00476B;
 }

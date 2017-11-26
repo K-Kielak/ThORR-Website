@@ -1,26 +1,23 @@
 import React from 'react'
 import { Row, Col, Card } from 'react-materialize';
 import PieChartCard from './pie-chart-card.jsx'
+import BarChartCard from './bar-chart-card.jsx'
 
 const ChartsDashboard = (props) => {
   return (
     <Row>
-      <Col s={12} m={4}>
+      <Col s={12} m={6}>
+        <BarChartCard
+          title={props.spendingBudgedTitle}
+          data={props.spendingBudgetData}
+          axisKey={props.spendingBudetXAxis}
+          dataKey1='spend'
+          dataKey2='budget' />
+      </Col>
+      <Col s={12} m={6}>
         <PieChartCard
           pieClick={props.pieClick}
-          colors={props.pieColors}
-          title={props.ragTitle}
-          data={props.ragData} />
-      </Col>
-      <Col s={12} m={4}>
-        <Card title={props.spendingBudgetTitle}>
-          {props.spendingBudgetValue}
-        </Card>
-      </Col>
-      <Col s={12} m={4}>
-        <PieChartCard
-          pieClick={props.pieClick}
-          colors={props.pieColors}
+          colors={props.colors}
           title={props.visitsPredictionTitle}
           data={props.visitsPredictionData} />
       </Col>
