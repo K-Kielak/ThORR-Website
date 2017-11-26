@@ -40,21 +40,21 @@ class ProjectDetails extends Component {
   componentDidMount()
   {
     var oldState = this.state;
-    (fetch('http://localhost:8080/project/line/Project%201').then((response) => {
+    (fetch('http://localhost:8080/project/line/'+ this.state.project.name).then((response) => {
       return response.json()
     }).then( (data) => {
       let sortedData = data.data.sort((a, b) => { return a.x > b.x })
       oldState.line_1 = sortedData
       this.setState(oldState);
     }));
-    (fetch('http://localhost:8080/project/line-error/Project%201').then((response) => {
+    (fetch('http://localhost:8080/project/line-error/' + this.state.project.name).then((response) => {
       return response.json()
     }).then( (data) => {
       let sortedData = data.data.sort((a, b) => { return a.x > b.x })
       oldState.line_1_error = sortedData
       this.setState(oldState);
     }));
-    (fetch('http://localhost:8080/project/bar/Project%2011').then((response) => {
+    (fetch('http://localhost:8080/project/bar/' + this.state.project.name).then((response) => {
       return response.json()
     }).then( (data) => {
       oldState.bar_data = data.data
