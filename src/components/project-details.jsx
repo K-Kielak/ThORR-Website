@@ -64,7 +64,7 @@ class ProjectDetails extends Component {
       <Navbar title={`${this.state.project.name} details`} />
       <Row>
         <Col s={12} m={4}>
-          <Card title="Line Graph">
+          <Card title="Change in Reporting per Period">
             <ResponsiveContainer maxHeight={200} maxWidth={200}>
               <LineChart  data={this.state.line_1}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -82,7 +82,7 @@ class ProjectDetails extends Component {
           </Card>
         </Col>
         <Col s={12} m={4}>
-          <Card title="Line Graph">
+          <Card title="Deviation from Baseline">
             <ResponsiveContainer maxHeight={200} maxWidth={200}>
               <LineChart  data={this.state.line_1_error}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -100,7 +100,7 @@ class ProjectDetails extends Component {
           </Card>
         </Col>
         <Col s={12} m={4}>
-          <Card title="BarChart">
+          <Card title="Summary of Variability">
             <ResponsiveContainer maxHeight={200} maxWidth={200}>
               <BarChart data={this.state.bar_data}>
                 <XAxis dataKey="x"/>
